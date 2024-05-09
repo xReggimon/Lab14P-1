@@ -15,28 +15,63 @@ double* minimum(double* a, int size);
 //0, return NULL
 
 int main() {
-	double userInput;
+	int size;
 	cout << "Enter size of array: ";
-	cin >> userInput;
+	cin >> size;
+	if (size <= 0) {
+		cout << "Invalid size." << endl;
+		return 1;
+	}
+
+	double* array = new double[size];
+
+	cout << "Enter " << size << "floating-point values: ";
+	for (int i = 0; i < size; i++) {
+		cin >> *(array + i);
+	}
+
+	double avg = average(array, size);
+	cout << "Average is " << avg << endl;
+
+	double* max_ptr
 }
 
 double average(double* a, int size) {
 	if (size == 0) {
 		return 0;
-
-		double sum = 0;
-		for (int i = 0; i < size; i++) {
-			{
-
-			} }
 	}
-	
+
+	double sum = 0;
+	for (int i = 0; i < size; i++) {
+		sum += *(a + i);
+	} 
+	return sum / size;
 }
 
 double* maximum(double* a, int size) {
-	return 0;
+	if (size == 0) {
+		return 0;
+	}
+
+	double* max_ptr = a;
+	for (int i = 1; i < size; i++) {
+		if (*(a + i) > *max_ptr) {
+			max_ptr = a + i;
+		}
+	}
+	return max_ptr;
 }
 
 double* minimum(double* a, int size) {
-	return 0;
+	if (size == 0) {
+		return 0;
+	}
+	
+	double* min_ptr = a;
+	for (int i = 1; i < size; i++) {
+		if (*(a + i) < *min_ptr) {
+			min_ptr = a + i;
+		}
+	}
+	return min_ptr;
 }
